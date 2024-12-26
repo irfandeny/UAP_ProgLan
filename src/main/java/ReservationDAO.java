@@ -30,4 +30,27 @@ public class ReservationDAO {
             throw new RuntimeException("Gagal menyimpan reservasi: " + e.getMessage());
         }
     }
+
+    public void updateReservationStatus(String id, String newStatus) {
+        String query = "UPDATE reservations SET status = ? WHERE id = ?";
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, newStatus);
+            statement.setString(2, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteReservation(String id) {
+        String query = "DELETE FROM reservations WHERE id = ?";
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, id);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

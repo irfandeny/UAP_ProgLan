@@ -59,9 +59,11 @@ public class NailArtReservation {
 
         JButton submitButton = new JButton("Reservasi");
         JButton clearButton = new JButton("Reset");
+        JButton updateStatusButton = new JButton("Ubah Status");
+        JButton deleteButton = new JButton("Hapus Pesanan");
 
         // Tabel untuk CRUD
-        String[] columnNames = {"Nama", "Telepon", "Layanan", "Desain", "Jadwal", "Pembayaran", "Harga Total", "Gambar"};
+        String[] columnNames = {"Nama", "Telepon", "Layanan", "Desain", "Jadwal", "Pembayaran", "Harga Total", "Gambar", "Status"};
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
         JTable reservationTable = new JTable(tableModel);
         JScrollPane tableScrollPane = new JScrollPane(reservationTable);
@@ -87,9 +89,59 @@ public class NailArtReservation {
         inputPanel.add(submitButton);
         inputPanel.add(clearButton);
 
+        mainPanel.add(updateStatusButton, BorderLayout.SOUTH);
         mainPanel.add(inputPanel, BorderLayout.NORTH);
         mainPanel.add(tableScrollPane, BorderLayout.CENTER);
+        mainPanel.add(deleteButton, BorderLayout.SOUTH);
         frame.add(mainPanel);
+
+        //tombol hapus
+        deleteButton.addActionListener(e -> {
+            int selectedRow = reservationTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                int confirmation = JOptionPane.showConfirmDialog(
+                        frame, "Apakah Anda yakin ingin menghapus pesanan ini?", "Konfirmasi",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (confirmation == JOptionPane.YES_OPTION) {
+                    String reservationId = (String) tableModel.getValueAt(selectedRow, 0); // ID reservasi
+                    ReservationDAO reservationDAO = new ReservationDAO();
+                    reservationDAO.deleteReservation(reservationId);
+
+                    tableModel.removeRow(selectedRow);
+                    JOptionPane.showMessageDialog(frame, "Pesanan berhasil dihapus!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame, "Pilih pesanan yang ingin dihapus!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        //update status
+        updateStatusButton.addActionListener(e -> {
+            int selectedRow = reservationTable.getSelectedRow();
+            if (selectedRow >= 0) {
+                String currentStatus = (String) tableModel.getValueAt(selectedRow, 8); // Kolom Status
+                String[] statusOptions = {"Pending", "Confirmed", "Canceled"};
+                String newStatus = (String) JOptionPane.showInputDialog(
+                        frame, "Pilih Status Baru:", "Ubah Status",
+                        JOptionPane.QUESTION_MESSAGE, null, statusOptions, currentStatus
+                );
+
+                if (newStatus != null && !newStatus.equals(currentStatus)) {
+                    tableModel.setValueAt(newStatus, selectedRow, 8);
+
+                    // Update status di database
+                    String reservationId = (String) tableModel.getValueAt(selectedRow, 0); // ID reservasi
+                    ReservationDAO reservationDAO = new ReservationDAO();
+                    reservationDAO.updateReservationStatus(reservationId, newStatus);
+
+                    JOptionPane.showMessageDialog(frame, "Status berhasil diubah!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(frame, "Pilih pesanan yang ingin diubah statusnya!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
 
         // Upload Gambar
         uploadButton.addActionListener(e -> {
@@ -144,7 +196,8 @@ public class NailArtReservation {
                 ReservationDAO reservationDAO = new ReservationDAO();
                 reservationDAO.saveReservation(name, phone, service, style, formattedSchedule, payment, totalPrice, imageName);
 
-                String[] data = {name, phone, service, style, formattedSchedule, payment, String.valueOf(totalPrice), imageName};
+                String status = "Pending";
+                String[] data = {name, phone, service, style, formattedSchedule, payment, String.valueOf(totalPrice), imageName, status};
                 reservations.add(data);
                 tableModel.addRow(data);
 
