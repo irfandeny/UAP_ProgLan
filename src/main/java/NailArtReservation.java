@@ -68,8 +68,8 @@ public class NailArtReservation {
         JTable reservationTable = new JTable(tableModel);
         JScrollPane tableScrollPane = new JScrollPane(reservationTable);
 
-        JPanel inputPanel = new JPanel(new GridLayout(9, 2, 5, 5));
-        inputPanel.setBackground(new Color(240, 244, 255));
+        JPanel inputPanel = new JPanel(new GridLayout(10, 2, 5, 5));
+        inputPanel.setBackground(new Color(252, 225, 228));
         inputPanel.add(nameLabel);
         inputPanel.add(nameField);
         inputPanel.add(phoneLabel);
@@ -88,11 +88,11 @@ public class NailArtReservation {
         inputPanel.add(uploadButton);
         inputPanel.add(submitButton);
         inputPanel.add(clearButton);
+        inputPanel.add(updateStatusButton);
+        inputPanel.add(deleteButton);
 
-        mainPanel.add(updateStatusButton, BorderLayout.SOUTH);
         mainPanel.add(inputPanel, BorderLayout.NORTH);
         mainPanel.add(tableScrollPane, BorderLayout.CENTER);
-        mainPanel.add(deleteButton, BorderLayout.SOUTH);
         frame.add(mainPanel);
 
         //tombol hapus
