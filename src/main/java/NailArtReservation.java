@@ -1,7 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -68,7 +67,7 @@ public class NailArtReservation {
         JScrollPane tableScrollPane = new JScrollPane(reservationTable);
 
         JPanel inputPanel = new JPanel(new GridLayout(9, 2, 5, 5));
-        inputPanel.setBackground(new Color(240, 248, 255));
+        inputPanel.setBackground(new Color(240, 244, 255));
         inputPanel.add(nameLabel);
         inputPanel.add(nameField);
         inputPanel.add(phoneLabel);
@@ -81,7 +80,7 @@ public class NailArtReservation {
         inputPanel.add(scheduleField);
         inputPanel.add(paymentLabel);
         inputPanel.add(cashButton);
-        inputPanel.add(new JLabel()); // Spacer untuk tata letak
+        inputPanel.add(new JLabel());
         inputPanel.add(cardButton);
         inputPanel.add(imageLabel);
         inputPanel.add(uploadButton);
@@ -90,7 +89,6 @@ public class NailArtReservation {
 
         mainPanel.add(inputPanel, BorderLayout.NORTH);
         mainPanel.add(tableScrollPane, BorderLayout.CENTER);
-
         frame.add(mainPanel);
 
         // Upload Gambar
