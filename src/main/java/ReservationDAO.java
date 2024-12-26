@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ReservationDAO {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/nail_art_reservation";
@@ -53,4 +54,30 @@ public class ReservationDAO {
             e.printStackTrace();
         }
     }
+
+    public ArrayList<String[]> getReservations() {
+        ArrayList<String[]> reservations = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT * FROM reservations")) {
+
+            while (rs.next()) {
+                String[] reservation = new String[9];
+                reservation[0] = rs.getString("name");
+                reservation[1] = rs.getString("phone");
+                reservation[2] = rs.getString("service");
+                reservation[3] = rs.getString("style");
+                reservation[4] = rs.getString("schedule");
+                reservation[5] = rs.getString("payment_method");
+                reservation[6] = rs.getString("total_price");
+                reservation[7] = rs.getString("image_name");
+                reservation[8] = rs.getString("status");
+                reservations.add(reservation);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return reservations;
+    }
+
 }

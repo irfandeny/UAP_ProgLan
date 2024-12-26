@@ -20,8 +20,6 @@ public class NailArtReservation {
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.setBackground(new Color(240, 248, 255));
 
-        ArrayList<String[]> reservations = new ArrayList<>();
-
         // Input Components
         JLabel nameLabel = new JLabel("Nama Pelanggan:");
         JTextField nameField = new JTextField();
@@ -68,6 +66,12 @@ public class NailArtReservation {
         JTable reservationTable = new JTable(tableModel);
         JScrollPane tableScrollPane = new JScrollPane(reservationTable);
 
+        ReservationDAO reservationDAO = new ReservationDAO();
+        ArrayList<String[]> reservations = reservationDAO.getReservations(); // Ambil data dari database
+        for (String[] reservation : reservations) {
+            tableModel.addRow(reservation); // Masukkan data ke dalam tabel
+        }
+
         JPanel inputPanel = new JPanel(new GridLayout(10, 2, 5, 5));
         inputPanel.setBackground(new Color(252, 225, 228));
         inputPanel.add(nameLabel);
@@ -95,6 +99,8 @@ public class NailArtReservation {
         mainPanel.add(tableScrollPane, BorderLayout.CENTER);
         frame.add(mainPanel);
 
+
+
         //tombol hapus
         deleteButton.addActionListener(e -> {
             int selectedRow = reservationTable.getSelectedRow();
@@ -106,7 +112,6 @@ public class NailArtReservation {
 
                 if (confirmation == JOptionPane.YES_OPTION) {
                     String reservationId = (String) tableModel.getValueAt(selectedRow, 0); // ID reservasi
-                    ReservationDAO reservationDAO = new ReservationDAO();
                     reservationDAO.deleteReservation(reservationId);
 
                     tableModel.removeRow(selectedRow);
@@ -133,7 +138,6 @@ public class NailArtReservation {
 
                     // Update status di database
                     String reservationId = (String) tableModel.getValueAt(selectedRow, 0); // ID reservasi
-                    ReservationDAO reservationDAO = new ReservationDAO();
                     reservationDAO.updateReservationStatus(reservationId, newStatus);
 
                     JOptionPane.showMessageDialog(frame, "Status berhasil diubah!", "Sukses", JOptionPane.INFORMATION_MESSAGE);
@@ -193,7 +197,6 @@ public class NailArtReservation {
                 String imageName = imagePreview.getText();
 
                 // Simpan ke dalam database atau lakukan proses lainnya
-                ReservationDAO reservationDAO = new ReservationDAO();
                 reservationDAO.saveReservation(name, phone, service, style, formattedSchedule, payment, totalPrice, imageName);
 
                 String status = "Pending";
