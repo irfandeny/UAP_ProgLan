@@ -10,7 +10,7 @@ import java.util.Date;
 public class NailArtReservation {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
 
-    public static void main(String[] args) {
+    public static void showReservationFrame() {
         JFrame frame = new JFrame("Reservasi Jasa Nail Art");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1000, 700);
