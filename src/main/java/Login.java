@@ -84,7 +84,7 @@ public class Login {
     }
 
     private boolean validateLogin(String username, String password) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://172.16.251.37:3306/nail_art_reservation", "keysya", "key011223@");
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/nail_art_reservation", "root", "");
              PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?")) {
 
             statement.setString(1, username);

@@ -2,9 +2,9 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ReservationDAO {
-    private static final String DB_URL = "jdbc:mysql://172.16.251.37:3306/nail_art_reservation";
-    private static final String DB_USER = "keysya"; // Sesuaikan dengan username MySQL Anda
-    private static final String DB_PASSWORD = "key011223@"; // Sesuaikan dengan password MySQL Anda
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/nail_art_reservation";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "";
 
     // Metode untuk menyimpan reservasi
     public void saveReservation(String name, String phone, String service, String style, String schedule,

@@ -243,7 +243,7 @@ public class NailArtReservation {
         try {
             DATE_FORMAT.setLenient(false);
             Date date = DATE_FORMAT.parse(schedule);
-            schedule = new SimpleDateFormat("yyyy-MM-dd").format(date); // Ubah format ke MySQL format
+            schedule = new SimpleDateFormat("yyyy-MM-dd").format(date);
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(frame, "Format tanggal salah! Gunakan format dd-MM-yyyy.", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -252,7 +252,6 @@ public class NailArtReservation {
         return true;
     }
 
-    // Hitung Harga Total
     private static int calculatePrice(String service, String style) {
         int totalPrice = 0;
         if (service.contains("Manicure")) {
@@ -271,10 +270,7 @@ public class NailArtReservation {
         return totalPrice;
     }
 
-    // Reset Fields
-    private static void clearFields(JTextField nameField, JTextField phoneField, JTextField scheduleField,
-                                    JComboBox<String> serviceCombo, JComboBox<String> styleCombo,
-                                    ButtonGroup paymentGroup, JLabel imagePreview) {
+    private static void clearFields(JTextField nameField, JTextField phoneField, JTextField scheduleField, JComboBox<String> serviceCombo, JComboBox<String> styleCombo, ButtonGroup paymentGroup, JLabel imagePreview) {
         nameField.setText("");
         phoneField.setText("");
         scheduleField.setText("");
