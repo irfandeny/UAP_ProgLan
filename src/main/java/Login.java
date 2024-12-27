@@ -7,19 +7,65 @@ public class Login {
         JFrame loginFrame = new JFrame("Login");
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.setSize(400, 300);
-        loginFrame.setLayout(new GridLayout(4, 1));
+        loginFrame.setLocationRelativeTo(null);
 
-        JLabel usernameLabel = new JLabel("Username:");
-        JTextField usernameField = new JTextField();
-        JLabel passwordLabel = new JLabel("Password:");
+        JPanel mainpanel = new JPanel();
+        mainpanel.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+        loginFrame.add(mainpanel);
+
+        JLabel titleLabel = new JLabel("Login",SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Times New Roman", Font.BOLD, 24));
+
+        JLabel usernameLabel = new JLabel("Username :");
+        usernameLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
+        JTextField usernameField = new JTextField(20);
+        JLabel passwordLabel = new JLabel("Password :");
+        passwordLabel.setFont(new Font("Times New Roman", Font.BOLD, 18));
         JPasswordField passwordField = new JPasswordField();
+
         JButton loginButton = new JButton("Login");
 
-        loginFrame.add(usernameLabel);
-        loginFrame.add(usernameField);
-        loginFrame.add(passwordLabel);
-        loginFrame.add(passwordField);
-        loginFrame.add(loginButton);
+        Dimension labelSize = new Dimension(100, 25);
+        usernameLabel.setPreferredSize(labelSize);
+        passwordLabel.setPreferredSize(labelSize);
+
+        GroupLayout layout = new GroupLayout(mainpanel);
+        mainpanel.setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                        .addComponent(titleLabel)
+                        .addGroup(
+                                layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                .addComponent(usernameLabel)
+                                                .addComponent(passwordLabel))
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addComponent(usernameField)
+                                                .addComponent(passwordField))
+                        )
+                        .addComponent(loginButton)
+        );
+
+
+        layout.setVerticalGroup(
+                layout.createSequentialGroup()
+                        .addComponent(titleLabel)
+                        .addGroup(
+                                layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(usernameLabel)
+                                        .addComponent(usernameField)
+                        )
+                        .addGroup(
+                                layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(passwordLabel)
+                                        .addComponent(passwordField)
+                        )
+                        .addComponent(loginButton)
+        );
+
 
         loginFrame.setVisible(true);
 
