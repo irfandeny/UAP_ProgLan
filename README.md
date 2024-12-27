@@ -26,6 +26,7 @@ Proyek ini adalah sebuah aplikasi reservasi jasa nail art yang dibangun mengguna
 
 ## Struktur Folder
 
+'''
 |-- src/
 |   |-- NailArtReservation.java  # Kelas utama untuk frame reservasi.
 |   |-- Main.java                # Kelas untuk memulai aplikasi.
@@ -33,7 +34,7 @@ Proyek ini adalah sebuah aplikasi reservasi jasa nail art yang dibangun mengguna
 |   |-- Login.java               # Kelas untuk frame login.
 |-- resources/
 |   |-- database.sql             # Skrip untuk membuat tabel database.
-
+'''
 
 ---
 
