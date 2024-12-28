@@ -32,14 +32,16 @@ Proyek ini adalah sebuah aplikasi reservasi jasa nail art yang dibangun mengguna
 
 ## Struktur Folder
 
-
+```puml
 |-- src/
-| |-- NailArtReservation.java # Kelas utama untuk frame reservasi.
-| |-- Main.java # Kelas untuk memulai aplikasi.
-| |-- ReservationDAO.java # Kelas untuk operasi database terkait reservasi.
-| |-- Login.java # Kelas untuk frame login.
+| |-- NailArtReservation.java   # Kelas utama untuk frame reservasi.
+| |-- Main.java                 # Kelas untuk memulai aplikasi.
+| |-- ReservationDAO.java       # Kelas untuk operasi database terkait reservasi.
+| |-- Login.java                # Kelas untuk frame login.
 |-- resources/
-| |-- database.sql # Skrip untuk membuat tabel database.
+| |-- database.sql              # Skrip untuk membuat tabel database.
+
+```
 
 ---
 
