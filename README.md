@@ -85,5 +85,7 @@ Gunakan kredensial yang telah dibuat di tabel users untuk login.
 
 Jika ada pertanyaan atau masalah, hubungi kami di:
 
-- Email: support@nailartreservation.com
-- Telepon: +62-123-4567-890
+- Email: keysya.yesanty123@gmail.com
+         irfandeny112@gmail.com
+- Telepon: +62 852-8248-3177
+           +62 878-0558-7738
