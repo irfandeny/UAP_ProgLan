@@ -52,7 +52,7 @@ Proyek ini adalah sebuah aplikasi reservasi jasa nail art yang dibangun mengguna
 - Pastikan Java JDK terinstal.
 - Pastikan MySQL Server aktif.
 - Buat database dengan nama nail_art_reservation dan jalankan skrip database.sql yang tersedia.
-- Sesuaikan _DB_URL, **DB_USER, dan **DB_PASSWORD_ di kelas ReservationDAO sesuai konfigurasi lokal Anda.
+- Sesuaikan **_DB_URL**, **DB_USER**, dan **DB_PASSWORD** di kelas ReservationDAO sesuai konfigurasi lokal Anda.
 
 ### 2. Menjalankan Aplikasi
 
